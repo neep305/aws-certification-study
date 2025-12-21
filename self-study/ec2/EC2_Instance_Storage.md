@@ -63,7 +63,8 @@ You must keep data after stopping an instance. What should you choose?
 - B. EBS volume
 - C. In-memory cache
 - D. Single-AZ EFS One Zone-IA
-Answer: B
+> Answer: B
+
 해설: Instance Store는 스톱/테미네이트 시 데이터가 사라지므로, **종료 후 보존하려면 EBS가 필요**하다.
 
 ## [EBS Volume Types](https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volume-types.html)
@@ -79,7 +80,8 @@ Answer: B
 - B. st1
 - C. io2
 - D. sc1
-Answer: C
+> Answer: C
+
 해설: 64K IOPS를 일관되게 제공하려면 프로비저닝 IOPS SSD가 필요하며 io2가 내구성과 지연 측면에서 가장 적합하다.
 
 ## EBS IOPS 성능
@@ -96,7 +98,8 @@ An application issues 16 KiB reads at 40,000 IOPS and needs consistent latency. 
 - B. gp2 volume at 5 TB relying on burst credits
 - C. io2 volume provisioned for 40,000 IOPS on a Nitro instance
 - D. st1 throughput-optimized HDD volume
-Answer: C
+> Answer: C
+
 해설: 버스트 의존(gp2)이나 HDD(st1)는 일관 지연을 못 주며, 프로비저닝 IOPS SSD(io2)+Nitro만 40K IOPS를 안정 제공한다.
 
 ## 32,000+ IOPS와 Nitro 필요성 이해
@@ -112,11 +115,12 @@ You need more than 32,000 consistent IOPS from an EBS volume. What is required?
 - B. io1/io2 on a non-Nitro instance
 - C. io1/io2 on a Nitro-based instance to exceed 32K IOPS
 - D. st1 volume with provisioned throughput
-Answer: C
+> Answer: C
+
 해설: 32K IOPS 초과는 Nitro 하드웨어 대역폭이 필수이고, io1/io2 프로비저닝으로만 달성할 수 있다.
 
 ## EBS Multi-Attach
-- - 실제 활용 사례:
+- 실제 활용 사례:
   - Windows Failover Cluster에서 공유 디스크(quorum/witness)로 사용해 노드 장애 시 즉시 페일오버
   - RHEL Pacemaker/Corosync + GFS2로 다중 노드가 동일 블록 디바이스에 동시 접근하는 HA 파일시스템
   - 컨테이너 오케스트레이션(예: Kubernetes DaemonSet)에서 노드별 동일 블록 데이터를 동시에 읽기/쓰기
@@ -133,7 +137,8 @@ Several instances must read/write concurrently to the same block device. What is
 - B. io2 volume with Multi-Attach plus a cluster-aware file system
 - C. st1 volume with a self-managed NFS server
 - D. Instance store RAID
-Answer: B
+> Answer: B
+
 해설: 멀티 어태치는 io1/io2만 지원하며, 동시 쓰기엔 클러스터 파일시스템 같은 락 관리가 필요하다.
 
 ## EBS Encryption
@@ -240,5 +245,6 @@ An instance-store-backed cache node fails and must be replaced quickly with data
 - B. Treat cache data as ephemeral and rebuild on boot via User Data/SSM from a source (S3/EBS)
 - C. Stop the instance because data persists automatically
 - D. Use Multi-Attach so two instances share the same cache
-Answer: B
+> Answer: B
+
 해설: Instance Store는 백업이 불가하므로 캐시를 휘발성으로 보고 부팅 시 스크립트로 원본에서 재구성하는 것이 가장 빠르다.
