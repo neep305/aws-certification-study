@@ -43,6 +43,7 @@ ALB는 **Target Group** 단위로 트래픽 전달
 
 📌 ALB → Target Group → 실제 대상
 
+![alb_dns.png](./alb_dns.png)
 ---
 
 ### ③ Dynamic Port Mapping (ECS) ⭐⭐
